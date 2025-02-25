@@ -1,12 +1,16 @@
-import './App.css'
-import ProductList from './pages/productList'
-function App() {
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import ProductList from "./pages/productList";
+import ProductDetails from "./pages/productDetails";
 
+function App() {
   return (
-    <>
-    < ProductList />
-    </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<ProductList />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
