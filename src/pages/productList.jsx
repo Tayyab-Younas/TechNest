@@ -6,26 +6,28 @@ function productList() {
     const products = useSelector((state) => state.products.products);
 
   return (
-    <div>
+    <>
+      <div className=" text-center">
         our product
+      </div>
 
 
-        <div >
+        <div className=" grid grid-cols-3 mt-3" >
             {products.map((product) => (
               
-                <div key={product.id}>
+                <div className="text-center" key={product.id}>
                   
-                     <h1>{product.name}</h1>
                      <Link to={`/product/${product.id}`}>
-                     <img src={product.Image} alt={product.name} />
+                     <img className=" object-cover cursor-pointer p-5" src={product.Image} alt={product.name} />
                      </Link>
+                     <h1>{product.name}</h1>
                      <p>{product.price}</p>
                 </div>
             ) )}
         </div>
 
 
-    </div>
+    </>
   )
 }
 
