@@ -12,17 +12,28 @@ const ProductDetails = () => {
   if (!product) return <p>Product not found!</p>;
 
   return (
-    <div className="p-6">
-      <img src={product.Image} alt={product.name} className="w-64 h-64 object-cover mx-auto" />
-      <h1 className="text-2xl font-bold mt-4">{product.name}</h1>
-      <p className="text-gray-600 mt-2">{product.description}</p>
-      <p className="text-xl font-semibold mt-2">{product.price}</p>
-      <button
-        onClick={() => dispatch(addToCart(product))}
-        className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
-      >
-        Add to Cart
-      </button>
+    <div className="flex">
+   
+      <div className="w-auto">
+
+        <img className="w-[20%]" src={product.Image} alt={product.name} />
+
+      </div>
+
+      <div className="w-[50%]">
+
+        <h1 className="text-2xl font-bold mt-4">{product.name}</h1>
+        <p className="text-gray-600 mt-2">{product.description}</p>
+        <p className="text-xl font-semibold mt-2">{product.price}</p>
+        <button
+          onClick={() => dispatch(addToCart(product))}
+          className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+          >
+          Add to Cart
+        </button>
+        
+        </div>
+
     </div>
   );
 };
