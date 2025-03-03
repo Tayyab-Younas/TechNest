@@ -33,6 +33,7 @@ const ProductDetails = () => {
         </button>
         
         </div>
+        
 
     </div>
   );
