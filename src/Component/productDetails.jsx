@@ -1,11 +1,17 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../store/slices/cartSlice";
 
 const ProductDetails = () => {
+
+  const cartItems = useSelector((state) => state.cart.cartItems);
+  console.log("Cart Items:", cartItems); // Log cart items
+  
+
   const { id } = useParams();
   const product = useSelector((state) =>
-    state.products.products.find((product) => product.id === id)
+    state.products.products.find((product) => product.id ===  id)
   );
   const dispatch = useDispatch();
 
@@ -26,8 +32,15 @@ const ProductDetails = () => {
         <p className="text-gray-600 mt-2">{product.description}</p>
         <p className="text-xl font-semibold mt-2">{product.price}</p>
         <button
-          onClick={() => dispatch(addToCart(product))}
-          className="bg-blue-500 text-white px-4 py-2 rounded mt-4"
+        
+          onClick=
+          {
+            
+            () =>   {
+              console.log("Adding product to cart:", product);
+              dispatch(addToCart(product))}
+            } 
+          className="bg-blue-500 text-white px-4 py-2 rounded mt-4 cursor-pointer"
           >
           Add to Cart
         </button>
