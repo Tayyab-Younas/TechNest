@@ -2,12 +2,26 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../store/slices/cartSlice";
+import { toast , ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"
 
 const ProductDetails = () => {
 
-  const cartItems = useSelector((state) => state.cart.cartItems);
-  console.log("Cart Items:", cartItems); // Log cart items
-  
+  const handleCart = (product)=> {
+    
+    dispatch(addToCart(product));
+
+    toast.success('added to cart',
+      {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick : true,
+        pauseOnHover : false,
+        draggable : true,
+        theme : "dark"
+      });
+  }
 
   const { id } = useParams();
   const product = useSelector((state) =>
@@ -30,24 +44,19 @@ const ProductDetails = () => {
 
         <h1 className="text-2xl font-bold">{product.name}</h1>
         <p className="text-gray-600 mt-2">{product.description}</p>
-        <p className="text-xl font-semibold mt-2">{product.price}</p>
+        <p className="text-xl font-semibold mt-2">${product.price}</p>
         <button
         
-          onClick=
-          {
-            
-            () =>   {
-              console.log("Adding product to cart:", product);
-              dispatch(addToCart(product))}
-            } 
-          className="bg-blue-500 text-white px-4 py-2 rounded mt-4 cursor-pointer"
+          onClick = 
+            { () =>  handleCart(product)}
+            className="bg-blue-500 text-white px-4 py-2 rounded mt-4 cursor-pointer"
           >
           Add to Cart
         </button>
         
         </div>
         
-
+        <ToastContainer />
     </div>
   );
 };
