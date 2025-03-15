@@ -3,7 +3,7 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import { useSelector } from "react-redux";
 
 function Navbar() {
-  const cartItems = useSelector((state) => state.cart?.items || []);
+  const cartItems = useSelector((state) => state.cart.cartItems || []);
 
   return (
     <>
@@ -13,15 +13,13 @@ function Navbar() {
             TechNest
           </Link>
           <div className="flex items-center space-x-8 font-serif">
-            <Link to="/" className="hover:border-b-2 border-gray-300">Home</Link>
-            <Link to="/Man" className="hover:border-b-2 border-gray-300">Man</Link>
-            <Link to="/Woman" className="hover:border-b-2 border-gray-300">Woman</Link>
-            <Link to="Kids" className="hover:border-b-2 border-gray-300">Kids</Link>
+            <input type="text" className="bg-white text-black p-2" required placeholder="Search products..." />
+            <button className=" border-2 border-green-300 text-green-300 px-4 py-2">Search</button>
             <Link to="/cart">
               {" "}
-              <RiShoppingCartLine size={24} className="" />
+              <RiShoppingCartLine size={24} className=" relative" />
               {cartItems.length > 0 && (
-                <span className=" bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                <span className=" absolute top-9 right-4.5 bg-white text-black text-xs w-5 h-5 flex items-center justify-center rounded-full">
                   0{cartItems.length}
                 </span>
               )}
