@@ -24,7 +24,7 @@ function productList() {
                      <img className=" object-cover cursor-pointer w-[370px] h-[370px] rounded-lg" src={product.Image} alt={product.name} />
                      </Link>
                      <h1 className="text-lg font-semibold mt-2">{product.name}</h1>
-                     <p className="text-gray-600">${product.price}</p>
+                     <p className="text-black">${product.price}</p>
                 </div>
             ) )}
         </div>

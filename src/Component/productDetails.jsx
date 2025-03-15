@@ -43,8 +43,8 @@ const ProductDetails = () => {
       <div className="w-[50%] ">
 
         <h1 className="text-2xl font-bold">{product.name}</h1>
-        <p className="text-gray-600 mt-2">{product.description}</p>
-        <p className="text-xl font-semibold mt-2">${product.price}</p>
+        <p className="text-black mt-2 font-sans">{product.description}</p>
+        <p className="text-xl text-black  font-semibold mt-2 ">${product.price}</p>
         <button
         
           onClick = 
