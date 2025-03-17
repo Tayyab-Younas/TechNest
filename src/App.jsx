@@ -4,14 +4,13 @@ import ProductDetails from "./Component/productDetails";
 import Navbar from "./Component/navbar";
 import Cart from "./Component/cart";
 
-
 function App() {
   return (
     <Router>
-        <Navbar/>
+      <Navbar />
       <Routes>
         <Route path="/" element={<ProductList />} />
-        <Route path="/cart" element={<Cart />}  />
+        <Route path="/cart" element={<Cart />} />
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
     </Router>

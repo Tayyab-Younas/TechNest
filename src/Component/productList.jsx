@@ -2,9 +2,9 @@ import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 
 
-function productList() {
+function ProductList() {
 
-    const products = useSelector((state) => state.products.products);
+    const products = useSelector ((state) => state.products.products);
 
   return (
     <>
@@ -34,4 +34,4 @@ function productList() {
   )
 }
 
-export default productList
+export default ProductList
