@@ -4,6 +4,7 @@ import ProductDetails from "./Component/productDetails";
 import Navbar from "./Component/navbar";
 import Cart from "./Component/cart";
 
+
 function App() {
   return (
     <Router>

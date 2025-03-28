@@ -6,6 +6,8 @@ import {
 } from "../store/slices/cartSlice";
 import { toast, ToastContainer } from "react-toastify/unstyled";
 import "react-toastify/dist/ReactToastify.css";
+import Checkout from "../Component/checkout";
+
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.cartItems);
@@ -35,8 +37,11 @@ const Cart = () => {
 
   return (
     <>
+        <div className="flex justify-between">
+        <h1 className="text-2xl font-bold p-3">Shopping Cart</h1>
+        <div className="text-right p-3"> <Checkout /></div>
+        </div>
       <div className="container mx-auto p-5">
-        <h1 className="text-2xl font-bold mb-5">Shopping Cart</h1>
 
         {cartItems.length === 0 ? (
           <p className="text-gray-500">Your cart is empty.</p>
@@ -45,7 +50,7 @@ const Cart = () => {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex gap-x-8 items-center p-4 rounded-lg shadow"
+                className="flex gap-x-8 items-center p-4 rounded-lg justify-between"
               >
                 <img
                   src={item.Image}
@@ -62,14 +67,14 @@ const Cart = () => {
                 </div>
                 <div className="text-center">
                   <p>Product quantity</p>
-                  <button
+                  <button className="text-xl"
                     onClick={() => dispatch(decreaseItemQuantity(item.id))}
                   >
                     -
                   </button>
-                  <span>{item.quantity}</span>
+                  <span className=" m-5" >{item.quantity}</span>
 
-                  <button
+                  <button className='text-xl'
                     onClick={() => dispatch(increaseItemQuantity(item.id))}
                   >
                     +
