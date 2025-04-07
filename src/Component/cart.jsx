@@ -50,12 +50,12 @@ const Cart = () => {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex gap-x-8 items-center p-4 rounded-lg justify-between"
+                className="md:flex gap-x-8 items-center p-4 rounded-lg justify-between"
               >
                 <img
                   src={item.Image}
                   alt={item.name}
-                  className="w-[20%] h-[20%] object-cover rounded"
+                  className=" sm:w-[30%] md:w-[20%] sm:mx-auto md:mx-0 mb-2 h-[20%] object-cover rounded"
                 />
                 <div className="text-center">
                   <p>Product name</p>

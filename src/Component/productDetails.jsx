@@ -28,8 +28,8 @@ const ProductDetails = () => {
   if (!product) return <p>Product not found!</p>;
 
   return (
-    <div className="flex items-center justify-center gap-10 p-10">
-      <div className="w-[40%] md:w-[400px]">
+    <div className="sm:flex items-center justify-center gap-10 p-10">
+      <div className="sm:w-[40%] md:w-[400px]">
         <img
           className="w-full h-auto object-cover rounded-lg"
           src={product.Image}
@@ -37,7 +37,7 @@ const ProductDetails = () => {
         />
       </div>
 
-      <div className="w-[50%] ">
+      <div className="sm:w-[50%] ">
         <h1 className="text-2xl font-bold">{product.name}</h1>
         <p className="text-black mt-2 font-sans">{product.description}</p>
         <p className="text-xl text-black  font-semibold mt-2 ">

@@ -40,11 +40,11 @@ function Navbar() {
   return (
     <>
       <nav className="bg-black text-white p-4 shadow-md">
-        <div className="flex justify-between mx-auto">
+        <div className="sm:flex justify-between mx-auto">
           <Link to="" className="md:text-xl sm:text-sm  font-bold">
             TechNest
           </Link>
-          <div className="flex items-center space-x-8 font-serif">
+          <div className="flex items-center sm:justify-between space-x-8 font-serif">
             <div className="relative" ref={searchRef}>
               <input
                 type="text"
