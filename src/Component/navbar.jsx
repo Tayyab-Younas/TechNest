@@ -44,6 +44,14 @@ function Navbar() {
           <Link to="" className="md:text-xl sm:text-sm  font-bold">
             TechNest
           </Link>
+
+          <div className=" cursor-pointer flex gap-5 items-center">
+            <Link to="">Home</Link>
+            <Link to="/Headphone">Headphone</Link>
+            <Link to="/Airpods">Airpods</Link>
+            <Link to="/Watches">Watches</Link>
+            <Link to="/Chargers">Chargers</Link>
+          </div>
           <div className="flex items-center sm:justify-between space-x-8 font-serif">
             <div className="relative" ref={searchRef}>
               <input
