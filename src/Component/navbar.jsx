@@ -41,18 +41,21 @@ function Navbar() {
     <>
       <nav className="bg-black text-white p-4 shadow-md">
         <div className="sm:flex justify-between mx-auto">
-          <Link to="" className="md:text-xl sm:text-sm  font-bold">
+          <div className="sm:order-2 lg:order-none">
+
+          <Link to="" className="md:text-xl sm:text-sm flex items-center font-bold">
             TechNest
           </Link>
+          </div>
 
-          <div className=" cursor-pointer flex gap-5 items-center">
-            <Link to="">Home</Link>
+          <div className=" cursor-pointer sm:flex sm:flex-col lg:flex gap-5 lg:ml-40 items-center sm:order-1 lg:order-none">
+             <Link to="">Home</Link>
             <Link to="/Headphone">Headphone</Link>
             <Link to="/Airpods">Airpods</Link>
             <Link to="/Watches">Watches</Link>
             <Link to="/Chargers">Chargers</Link>
           </div>
-          <div className="flex items-center sm:justify-between space-x-8 font-serif">
+          <div className="flex items-center sm:justify-between space-x-8 font-serif sm:order-3 lg:order-none">
             <div className="relative" ref={searchRef}>
               <input
                 type="text"
