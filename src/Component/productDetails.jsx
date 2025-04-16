@@ -5,6 +5,15 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProductDetails = () => {
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  // Get the product by ID from the Redux store
+  const product = useSelector((state) =>
+    state.products.products.find((product) => product.id === id)
+  );
+
+  // Handle adding product to cart and show success toast
   const handleCart = (product) => {
     dispatch(addToCart(product));
 
@@ -19,16 +28,12 @@ const ProductDetails = () => {
     });
   };
 
-  const { id } = useParams();
-  const product = useSelector((state) =>
-    state.products.products.find((product) => product.id === id)
-  );
-  const dispatch = useDispatch();
-
+  // Show fallback message if product is not found
   if (!product) return <p>Product not found!</p>;
 
   return (
     <div className="sm:flex items-center justify-center gap-10 p-10">
+      {/* Product Image */}
       <div className="sm:w-[40%] md:w-[400px]">
         <img
           className="w-full h-auto object-cover rounded-lg"
@@ -37,10 +42,11 @@ const ProductDetails = () => {
         />
       </div>
 
+      {/* Product Info */}
       <div className="sm:w-[50%] ">
         <h1 className="text-2xl font-bold">{product.name}</h1>
         <p className="text-black mt-2 font-sans">{product.description}</p>
-        <p className="text-xl text-black  font-semibold mt-2 ">
+        <p className="text-xl text-black font-semibold mt-2 ">
           ${product.price}
         </p>
         <button

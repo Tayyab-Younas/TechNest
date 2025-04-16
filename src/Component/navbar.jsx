@@ -6,14 +6,18 @@ import { useSelector } from "react-redux";
 import { useState, useRef, useEffect } from "react";
 
 function Navbar() {
+  // Get cart items and product list from Redux store
   const cartItems = useSelector((state) => state.cart.cartItems || []);
   const product = useSelector((state) => state.products.products || []);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [filterProducts, setFilterProducts] = useState([]);
   const [isNavOpen, setIsNavOpen] = useState(false);
   const [isSearchShow, setSearchShow] = useState(false);
+
   const searchRef = useRef(null);
 
+  // Handle search input change
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
@@ -28,6 +32,7 @@ function Navbar() {
     }
   };
 
+  // Close search dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
@@ -46,7 +51,9 @@ function Navbar() {
     <>
       <nav className="bg-black text-white p-4 shadow-md">
         <div className="md:flex flex-row flex justify-between mx-auto">
-          <div className="sm:order-2 sm:text-2xl sm:items-center lg:ml-0 lg:order-none">
+          
+          {/* Brand Logo */}
+          <div className="sm:order-2 order-2 sm:text-2xl sm:items-center lg:ml-0 lg:order-none">
             <Link
               to=""
               className="md:text-xl sm:text-xl sm:ml-20 md:ml-20 lg:ml-0 flex items-center text-center font-bold"
@@ -55,7 +62,7 @@ function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile Menu */}
+          {/* Mobile Menu Button */}
           <div className="lg:hidden relative">
             <button
               onClick={() => setIsNavOpen(!isNavOpen)}
@@ -64,6 +71,7 @@ function Navbar() {
               <AiOutlineMenu size={24} />
             </button>
 
+            {/* Mobile Navigation Dropdown */}
             {isNavOpen && (
               <div className="absolute top-10 left-0 z-50 bg-black p-4 rounded-md shadow-md flex flex-col gap-3 w-48">
                 <Link to="" onClick={() => setIsNavOpen(false)}>Home</Link>
@@ -75,7 +83,7 @@ function Navbar() {
             )}
           </div>
 
-          {/* Desktop Nav */}
+          {/* Desktop Navigation Links */}
           <div className="hidden lg:flex lg:flex-row gap-5 items-center ml-40">
             <Link to="">Home</Link>
             <Link to="/Headphone">Headphone</Link>
@@ -84,10 +92,10 @@ function Navbar() {
             <Link to="/Chargers">Chargers</Link>
           </div>
 
-          {/* Right Section: Search + Cart */}
-          <div className="flex items-center sm:justify-between space-x-8 font-serif sm:order-3 lg:order-none">
+          {/* Search and Cart Section */}
+          <div className="flex items-center sm:justify-between space-x-8 font-serif sm:order-3 order-3 lg:order-none">
             <div className="relative" ref={searchRef}>
-              {/* Desktop search input */}
+              {/* Desktop Search Input */}
               <input
                 type="text"
                 className="bg-white text-black p-2 hidden lg:block"
@@ -97,15 +105,17 @@ function Navbar() {
                 onChange={handleSearchChange}
               />
 
-              {/* Mobile search toggle */}
+              {/* Mobile Search Toggle Button */}
               <div className="lg:hidden relative">
                 <button onClick={() => setSearchShow(!isSearchShow)} className="cursor-pointer flex items-center">
                   <IoSearchSharp size={24} />
                 </button>
+
+                {/* Mobile Search Input */}
                 {isSearchShow && (
                   <input
                     type="text"
-                    className="bg-white text-black p-2 mt-2 w-48 absolute right-7"
+                    className="bg-white w-64 text-black p-2 mt-2 absolute right-7"
                     required
                     placeholder="Search products..."
                     value={searchQuery}
@@ -114,9 +124,29 @@ function Navbar() {
                 )}
               </div>
 
-              {/* Single dropdown result for both mobile/desktop */}
+              {/* Mobile Search Results Dropdown */}
               {filterProducts.length > 0 && (
-                <div className="absolute left-0 w-64 bg-white text-black shadow-lg rounded-md mt-1 max-h-60 overflow-auto z-50">
+                <div className="absolute right-7 top-[68px] w-64 bg-white text-black shadow-lg rounded-md mt-1 max-h-60 overflow-auto z-50 block lg:hidden">
+                  {filterProducts.map((product) => (
+                    <Link
+                      to={`/product/${product.id}`}
+                      key={product.id}
+                      className="block p-2 hover:bg-gray-200"
+                      onClick={() => {
+                        setFilterProducts([]);
+                        setSearchQuery("");
+                        setSearchShow(false);
+                      }}
+                    >
+                      {product.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {/* Desktop Search Results Dropdown */}
+              {filterProducts.length > 0 && (
+                <div className="absolute left-0 w-64 bg-white text-black shadow-lg rounded-md mt-1 max-h-60 overflow-auto z-50 hidden lg:block">
                   {filterProducts.map((product) => (
                     <Link
                       to={`/product/${product.id}`}
@@ -135,7 +165,7 @@ function Navbar() {
               )}
             </div>
 
-            {/* Cart */}
+            {/* Cart Icon with Item Count */}
             <Link to="/cart" className="relative">
               <RiShoppingCartLine size={24} />
               {cartItems.length > 0 && (
